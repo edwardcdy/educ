@@ -35,8 +35,8 @@ class DivController < ApplicationController
     end
     
     def random
-        div_ids = Div.find( :all, :select => 'id' ).map( &:id )
-        @divs = Div.find( (1..10).map { div_ids.delete_at( div_ids.size * rand)})
+        @divs = Div.limit(10).order("RAND()")
+        render json: @divs
     end
     
     def div_params
