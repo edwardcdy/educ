@@ -1,28 +1,33 @@
-== README
+=== Dependencies
+* Ruby 2.2.3
+* Rails 4.2.6
+* Mysql database
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Run 'bundle install' 
 
-Things you may want to cover:
+git clone https://github.com/edwardcdy/educ
 
-* Ruby version
+make sure mysql process is running
+bash rails server
+default address: localhost:3000
 
-* System dependencies
+=== API endpoints
 
-* Configuration
+GET /div/
+  Shows a list of all the Objects in the database
+POST /div/create
+  Creates an object of type "div" and stores it. Must contain a div object with non-empty string field keyed as text
+  Example request: 
+  POST  {"div":
+          {"text":"This will be inserted into the text column"}
+        }
+GET /div/show/:id
+  Get the corresponding object with an id of :id, if it exists
+GET /div/delete/:id'
+  Delete the corresponding object with an id of :id, if it exists
+Put /div/update/:id
+  Update an object with the corresponding ID. Same request structure as /div/create
+GET /div/random
+  Outputs 10 (or up to 10 if less than 10 objects) random objects  
 
-* Database creation
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
