@@ -1,0 +1,2 @@
+class LibraryTestController < ApplicationController
+end
