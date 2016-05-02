@@ -11,9 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160501071434) do
+ActiveRecord::Schema.define(version: 20160502192331) do
 
   create_table "divs", force: :cascade do |t|
+    t.string "text", limit: 255, null: false
+  end
+
+  create_table "popups", force: :cascade do |t|
     t.string "text", limit: 255, null: false
   end
 
