@@ -30,7 +30,6 @@ var DivPosts = React.createClass({
     return {data: []};
   },
   componentDidMount: function() {
-     console.log(this.props.posts);
      this.loadCommentsFromServer(this.props.posts);
   },
   render: function() {
