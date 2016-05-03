@@ -190,11 +190,11 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <DivPosts posts="http://localhost:3000/div/random"  />,
+  <DivPosts posts="/div/random"  />,
   document.getElementById('content')
 );
 
 ReactDOM.render(
-  <Popup popups="http://localhost:3000/popup/random" />,
+  <Popup popups="/popup/random" />,
   document.getElementById('popups')
 );

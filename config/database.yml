@@ -16,5 +16,5 @@ production:
    adapter: mysql
    database: library_production
    username: root
-   password: same
+   password: 
    host: localhost
