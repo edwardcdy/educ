@@ -14,7 +14,7 @@ test:
    
 production:
    adapter: mysql
-   database: library_production
-   username: root
-   password: 
-   host: localhost
+   database: heroku_46b7c4ff6db7df3
+   username: bce10f161d3e23
+   password: c54c2da0
+   host: us-cdbr-iron-east-03.cleardb.net
