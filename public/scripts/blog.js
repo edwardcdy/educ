@@ -83,12 +83,12 @@ var DivList = React.createClass({
     var onClick = this.props.onClick;
     var commentNodes = this.props.data.map(function(comment) {
       return (
-        <Draggable handle="strong" {...dragHandlers}>
-          <div className="Entry panel panel-success"  >
+        <Draggable handle="strong" {...dragHandlers} key={comment.id}>
+          <div className="Entry panel panel-success" >
             <strong className="panel-heading" >
               Concept #{comment.id}
             </strong>
-            <Comment onClick={con.cl.bind(this,comment.id)}> 
+            <Comment onClick={con.cl.bind(null,comment.id)}> 
               {comment.text}
             </Comment>
           </div>
@@ -196,7 +196,7 @@ var PopList = React.createClass({
     var onClick = this.props.onClick;
     var commentNodes = this.props.data.map(function(comment) {
       return (
-        <Draggable>
+        <Draggable key={comment.id}>
           <div className="Entry panel panel-warning col-md-4">
             <Comment> 
               {comment.text}
