@@ -1,4 +1,5 @@
 var GES = {};
+var Draggable = ReactDraggable;
 
 var DivPosts = React.createClass({
   clicked: [],
@@ -53,19 +54,45 @@ var DivList = React.createClass({
   cl: function(num){
     this.props.onClick(num);
   },
+  getInitialState: function () {
+      return {
+        activeDrags: 0,
+        deltaPosition: {
+          x: 0, y: 0
+      }
+    };
+  },
+  handleDrag: function (e, ui) {
+    const {x, y} = this.state.deltaPosition;
+    this.setState({
+      deltaPosition: {
+        x: x + ui.deltaX,
+        y: y + ui.deltaY,
+      }
+    });
+  },
+  onStart: function() {
+    this.setState({activeDrags: ++this.state.activeDrags});
+  },
+  onStop: function() {
+    this.setState({activeDrags: --this.state.activeDrags});
+  },
   render: function() {
+    const dragHandlers = {onStart: this.onStart, onStop: this.onStop};
     var con = this;
     var onClick = this.props.onClick;
     var commentNodes = this.props.data.map(function(comment) {
       return (
-        <div className="Entry panel panel-success" onClick={con.cl.bind(this,comment.id)}>
-          <div className="panel-heading">
-            Concept #{comment.id}
+        <Draggable handle="strong" {...dragHandlers}>
+          <div className="Entry panel panel-success"  >
+            <strong className="panel-heading" >
+              Concept #{comment.id}
+            </strong>
+            <Comment onClick={con.cl.bind(this,comment.id)}> 
+              {comment.text}
+            </Comment>
           </div>
-          <Comment> 
-            {comment.text}
-          </Comment>
-        </div>
+        </Draggable>
       );
     });
     return (
@@ -84,7 +111,7 @@ var Comment = React.createClass({
   },
   render: function() {
     return (
-      <div className="message panel-body">
+      <div className="message panel-body" onClick={this.props.onClick}>
         <span dangerouslySetInnerHTML={this.rawMarkup()} />
       </div>
     );
@@ -142,24 +169,48 @@ var Popup = React.createClass({
 });
 
 var PopList = React.createClass({
+  getInitialState: function () {
+      return {
+        activeDrags: 0,
+        deltaPosition: {
+          x: 0, y: 0
+      }
+    };
+  },
+  handleDrag: function (e, ui) {
+    const {x, y} = this.state.deltaPosition;
+    this.setState({
+      deltaPosition: {
+        x: x + ui.deltaX,
+        y: y + ui.deltaY,
+      }
+    });
+  },
+  onStart: function() {
+    this.setState({activeDrags: ++this.state.activeDrags});
+  },
+  onStop: function() {
+    this.setState({activeDrags: --this.state.activeDrags});
+  },
   render: function() {
     var onClick = this.props.onClick;
     var commentNodes = this.props.data.map(function(comment) {
       return (
-        <div className="Entry panel panel-warning col-md-4" >
-          <Comment> 
-            {comment.text}
-          </Comment>
-        </div>
+        <Draggable>
+          <div className="Entry panel panel-warning col-md-4">
+            <Comment> 
+              {comment.text}
+            </Comment>
+          </div>
+        </Draggable>
       );
     });
     return (
-      <div className="PopList" >
+      <div className="PopList">
         {commentNodes}
       </div>
     );
   }
-
 });
 
 var MenuBar = React.createClass({
