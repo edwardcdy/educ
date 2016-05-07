@@ -18,6 +18,12 @@ var DivPosts = React.createClass({
     });
   },
   onClick: function(num){
+    $.ajax({
+        type: 'PUT',
+        url: '/api/div/increment/'+num,
+        dataType:'json',
+        cache: false
+    });
     if (this.clicked.indexOf(num)==-1){
       $(GES).trigger('click');
       if (this.twocols==false){
@@ -241,11 +247,11 @@ ReactDOM.render(
 );
 
 ReactDOM.render(
-  <DivPosts posts="/div/random"  />,
+  <DivPosts posts="api/div/random"  />,
   document.getElementById('content')
 );
 
 ReactDOM.render(
-  <Popup popups="/popup/random" />,
+  <Popup popups="api/popup/random" />,
   document.getElementById('popups')
 );

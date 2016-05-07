@@ -14,7 +14,8 @@
 ActiveRecord::Schema.define(version: 20160502192331) do
 
   create_table "divs", force: :cascade do |t|
-    t.string "text", limit: 255, null: false
+    t.string  "text",   limit: 255, null: false
+    t.integer "weight", limit: 4
   end
 
   create_table "popups", force: :cascade do |t|

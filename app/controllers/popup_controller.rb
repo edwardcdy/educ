@@ -14,7 +14,7 @@ class PopupController < ApplicationController
         
         if @popup.save
             render json: {:status => "Successfully created and saved object"}
-            else
+        else
             render json: @popup.errors, status: :unprocessable_entity
         end
     end
@@ -24,7 +24,7 @@ class PopupController < ApplicationController
         
         if @popup.update(popup_params)
             render json: {:status => "Successfully changed object"}
-            else
+        else
             render json: @popup.errors, status: :unprocessable_entity
         end
     end
@@ -34,13 +34,20 @@ class PopupController < ApplicationController
         redirect_to :action => 'list'
     end
     
+    def delete_all
+        Popup.delete_all
+        redirect_to :action => 'list'
+    end
+    
     def random
         @popups = Popup.order("RAND()")
         render json: @popups
     end
     
+    
+    
     def popup_params
-        params.require(:popup).permit(:text)
+        params.require(:popup).permit(:text,:delete,:weight)
     end
 
 end
