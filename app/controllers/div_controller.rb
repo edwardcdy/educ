@@ -48,7 +48,7 @@ class DivController < ApplicationController
     end
 
     def random
-        @divs = Div.limit(10).order("RAND()")
+        @divs = Div.order_by_rand_weighted(:weight).limit(10).all
         render json: @divs
     end
     

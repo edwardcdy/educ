@@ -105,6 +105,10 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (11.1.2)
+    randumb (0.5.0)
+      activerecord (>= 3.0.0)
+      activesupport (>= 3.0.0)
+      rake
     rdoc (4.2.2)
       json (~> 1.4)
     sass (3.4.22)
@@ -151,6 +155,7 @@ DEPENDENCIES
   mysql
   rack-cors
   rails (= 4.2.6)
+  randumb
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   spring
