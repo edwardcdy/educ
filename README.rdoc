@@ -13,21 +13,40 @@ default address: localhost:3000
 
 === API endpoints
 
-GET /div/
+GET /api/div/
   Shows a list of all the Objects in the database
-POST /div/create
+POST /api/div/create
   Creates an object of type "div" and stores it. Must contain a div object with non-empty string field keyed as text
   Example request: 
   POST  {"div":
           {"text":"This will be inserted into the text column"}
         }
-GET /div/show/:id
+GET /api/div/show/:id
   Get the corresponding object with an id of :id, if it exists
-GET /div/delete/:id'
+GET /api/div/delete/:id'
   Delete the corresponding object with an id of :id, if it exists
-Put /div/update/:id
+Put /api/div/update/:id
   Update an object with the corresponding ID. Same request structure as /div/create
-GET /div/random
-  Outputs 10 (or up to 10 if less than 10 objects) random objects  
-
-
+GET /api/div/random
+  Outputs 10 (or up to 10 if less than 10 objects) random objects based on weights
+PUT /api/div/increment/:id
+  Put blank object to this endpoint to increase the weight by 1.
+POST /api/div/clear
+  Clear all data out of divs. Post a blank object
+GET /api/popup
+  Get a list of all the popup texts
+POST /api/popup/create
+  Post a JSON object to this enpoint in the format
+  {"popup":
+    {"text":"Popup text goes here"
+  }
+GET /api/popup/show/:id
+  Get the corresponding object with an id of :id, if it exists
+GET /api/popup/delete/:id
+  Delete the corresponding object with an id of :id, if it exists
+PUT api/popup/update/:id
+  Update an object with the corresponding ID. Same request structure as /api/popup/create
+GET /api/popup/random
+  Outputs 10 (or up to 10 if less than 10 objects) random popup objects based on weights
+POST /api/popup/clear/
+  
