@@ -77,6 +77,13 @@ var DivList = React.createClass({
       }
     });
   },
+  adjustYPos: function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      const {controlledPosition} = this.state;
+      const {x, y} = this.state.controlledPosition;
+      this.setState({controlledPosition: {x, y: y - 10}});
+  },
   onStart: function() {
     this.setState({activeDrags: ++this.state.activeDrags});
   },
@@ -89,7 +96,7 @@ var DivList = React.createClass({
     var onClick = this.props.onClick;
     var commentNodes = this.props.data.map(function(comment) {
       return (
-        <Draggable handle="strong" {...dragHandlers} key={comment.id}>
+        <Draggable axis="y" handle="strong" {...dragHandlers} key={comment.id}>
           <div className="Entry panel panel-success" >
             <strong className="panel-heading" >
               Concept #{comment.id}
